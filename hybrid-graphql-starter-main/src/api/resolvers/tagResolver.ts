@@ -1,8 +1,10 @@
 import {Tag} from '@sharedTypes/DBTypes';
-import {fetchAllTags,
+import {
+  fetchAllTags,
   fetchTagsByMediaId,
-    postTag,
-  deleteTag} from '../models/tagModel';
+  postTag,
+  deleteTag,
+} from '../models/tagModel';
 
 export default {
   MediaItem: {

@@ -15,4 +15,3 @@ type Mutation {
 input TagInput {
   tag_name: String!
 }
-```
