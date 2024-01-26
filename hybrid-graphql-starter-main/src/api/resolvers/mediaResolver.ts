@@ -25,7 +25,12 @@ export default {
   Mutation: {
     createMediaItem: async (
       _parent: undefined,
-      args: {input: Omit<MediaItem, 'mediaId' | 'created_at' | 'thumbnail'>},
+      args: {
+        input: Omit<
+          MediaItem,
+          'mediaId' | 'created_at' | 'thumbnail' | 'user_id'
+        >;
+      },
       context: MyContext,
     ) => {
       if (!context.user || !context.user.user_id) {
@@ -33,7 +38,12 @@ export default {
           extensions: {code: 'NOT_AUTHORIZED'},
         });
       }
-      return postMedia(args.input);
+      const userData = {
+        ...args.input,
+        user_id: context.user.user_id,
+      };
+
+      return postMedia(userData);
     },
     addTagToMediaItem: async (
       _parent: undefined,

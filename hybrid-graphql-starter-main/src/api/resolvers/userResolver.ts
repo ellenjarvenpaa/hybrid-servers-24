@@ -3,6 +3,14 @@ import {fetchData} from '../../lib/functions';
 import {LoginResponse, UserResponse} from '@sharedTypes/MessageTypes';
 
 export default {
+  MediaItem: {
+    owner: async (parent: {user_id: string}) => {
+      const user = await fetchData<UserWithNoPassword>(
+        process.env.AUTH_SERVER + '/users/' + parent.user_id,
+      );
+      return user;
+    },
+  },
   Query: {
     users: async () => {
       const users = await fetchData<UserWithNoPassword[]>(
@@ -11,7 +19,7 @@ export default {
       return users;
     },
     user: async (_parent: undefined, args: {user_id: string}) => {
-      const user = fetchData<UserWithNoPassword>(
+      const user = await fetchData<UserWithNoPassword>(
         process.env.AUTH_SERVER + '/users/' + args.user_id,
       );
       return user;
@@ -42,11 +50,11 @@ export default {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(args),
       };
-      const user = await fetchData<LoginResponse>(
+      const loginResponse = await fetchData<LoginResponse>(
         process.env.AUTH_SERVER + '/auth/login',
         options,
       );
-      return user;
+      return loginResponse;
     },
   },
 };

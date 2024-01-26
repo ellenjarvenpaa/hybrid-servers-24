@@ -6,6 +6,17 @@ type User {
   created_at: String!
 }
 
+type UserResponse {
+  user: User!
+  message: String!
+}
+
+type LoginResponse {
+  user: User!
+  token: String!
+  message: String!
+}
+
 type Query {
   users: [User]
   user(user_id: ID!): User
@@ -14,18 +25,7 @@ type Query {
 input UserInput {
   username: String! @constraint(minLength: 3, maxLength: 255)
   email: String! @constraint(format: "email")
-  password: String! @constraint(minLength: 5, pattern: "(?=.*[A-Z])")
-}
-
-type UserResponse {
-  user: User!
-  message: String!
-}
-
-type LoginResponse {
-  user: String!
-  token: String!
-  message: String!
+  password: String! @constraint(pattern: "(?=.*[0-9])")
 }
 
 type Mutation {
