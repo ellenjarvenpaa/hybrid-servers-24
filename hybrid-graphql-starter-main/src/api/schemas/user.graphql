@@ -12,9 +12,9 @@ type Query {
 }
 
 input UserInput {
-  username: String!
-  email: String!
-  password: String!
+  username: String! @constraint(minLength: 3, maxLength: 255)
+  email: String! @constraint(format: "email")
+  password: String! @constraint(minLength: 5, pattern: "(?=.*[A-Z])")
 }
 
 type UserResponse {
@@ -22,6 +22,13 @@ type UserResponse {
   message: String!
 }
 
+type LoginResponse {
+  user: String!
+  token: String!
+  message: String!
+}
+
 type Mutation {
   createUser(input: UserInput!): UserResponse
+  login(username: String!, password: String!): LoginResponse
 }
