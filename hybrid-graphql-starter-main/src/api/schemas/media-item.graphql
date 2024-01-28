@@ -12,6 +12,11 @@ type MediaItem {
   owner: User
 }
 
+type MediaRespone {
+  message: String!
+  media: MediaItem!
+}
+
 type Query {
   mediaItems: [MediaItem]
   mediaItem(media_id: ID!): MediaItem
@@ -26,6 +31,11 @@ input MediaItemInput {
   description: String
 }
 
+input MediaItemUpdateInput {
+  title: String
+  description: String
+}
+
 input AddTagToMediaItemInput {
   media_id: ID!
   tag_name: ID!
@@ -34,4 +44,5 @@ input AddTagToMediaItemInput {
 type Mutation {
   createMediaItem(input: MediaItemInput!): MediaItem
   addTagToMediaItem(input: AddTagToMediaItemInput!): MediaItem
+  updateMediaItem(input: MediaItemUpdateInput!, media_id: ID!): MediaResponse
 }
