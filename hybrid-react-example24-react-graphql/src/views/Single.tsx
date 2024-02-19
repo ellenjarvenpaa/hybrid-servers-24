@@ -11,28 +11,32 @@ const Single = () => {
 
   return (
     <>
-      <h3>{item.title}</h3>
-      {item.media_type.includes('video') ? (
-        <video controls src={item.filename}></video>
-      ) : (
-        <img src={item.filename} alt={item.title} />
-      )}
-      <Likes item={item} />
-      <p>{item.description}</p>
-      <p>
+      <p className='p-3 text-slate-950 bg-slate-50 border rounded border-black'>
         Uploaded at: {new Date(item.created_at).toLocaleString('fi-FI')}, by:{' '}
         {item.username}{' '}
       </p>
-      <p>{item.filesize}</p>
-      <p>{item.media_type}</p>
-      <button
+    <div className='flex justify-center'>
+      {item.media_type.includes('video') ? (
+        <video controls src={item.filename}></video>
+        ) : (
+          <img src={item.filename} alt={item.title} />
+          )}
+      </div>
+      <div className='p-3 text-slate-950 bg-slate-50 border rounded border-black grid grid-cols-2'>
+      <h3 className='p-2'>{item.title}</h3>
+      <div className='p-2 text-end'>
+      <Likes item={item} />
+      </div>
+      <p className='p-2'>{item.description}</p>
+      </div>
+      <Comments item={item} />
+      <button className='p-3 hover:text-slate-950'
         onClick={() => {
           navigate(-1);
         }}
       >
-        go back
+      Back
       </button>
-      <Comments item={item} />
     </>
   );
 };

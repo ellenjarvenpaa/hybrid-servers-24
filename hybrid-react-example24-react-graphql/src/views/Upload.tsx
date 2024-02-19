@@ -47,38 +47,13 @@ const Upload = () => {
 
   return (
     <>
-      <h1 className="text-3xl">Upload</h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex w-4/5">
-          <label className="w-1/3 p-6 text-end" htmlFor="title">
-            Title
+        <div className="flex justify-center">
+          <label className="p-6 text-slate-950" htmlFor="file">
+            Your OOTD picture...
           </label>
           <input
-            className="m-3 w-2/3 rounded-md border border-slate-500 p-3 text-slate-950"
-            name="title"
-            type="text"
-            id="title"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="flex w-4/5">
-          <label className="w-1/3 p-6 text-end" htmlFor="description">
-            Description
-          </label>
-          <textarea
-            className="m-3 w-2/3  rounded-md border border-slate-500 p-3 text-slate-950"
-            name="description"
-            rows={5}
-            id="description"
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div className="flex w-4/5">
-          <label className="w-1/3 p-6 text-end" htmlFor="file">
-            File
-          </label>
-          <input
-            className="m-3 w-2/3 rounded-md border border-slate-500 p-3 text-slate-50"
+            className="m-3 w-2/4 rounded-md border border-slate-950 p-3 text-slate-950 bg-slate-50"
             name="file"
             type="file"
             id="file"
@@ -86,9 +61,9 @@ const Upload = () => {
             onChange={handleFileChange}
           />
         </div>
-        <div className="flex w-4/5 justify-end">
+        <div className="flex justify-center">
           <img
-            className="w-2/3 p-6"
+            className="p-6 w-2/6"
             src={
               file
                 ? URL.createObjectURL(file)
@@ -98,9 +73,21 @@ const Upload = () => {
             width="200"
           />
         </div>
-        <div className="flex w-4/5 justify-end">
+        <div className="flex justify-center">
+          <label className="text-slate-950 p-6" htmlFor="description">
+            Outfit details...
+          </label>
+          <textarea
+            className="m-3 w-2/4 rounded-md border border-slate-950 p-3 text-slate-950"
+            name="description"
+            rows={5}
+            id="description"
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+        <div className="flex justify-center">
           <button
-            className="m-3 w-1/3 rounded-md bg-slate-600 p-3 disabled:text-slate-600"
+            className="p-3 text-slate-950 hover:text-slate-50"
             type="submit"
             disabled={file && inputs.title.length > 3 ? false : true}
           >

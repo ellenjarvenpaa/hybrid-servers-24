@@ -10,64 +10,39 @@ const Layout = () => {
 
   return (
     <>
-      <header>
-        <h1 className="p-4 text-4xl">My app</h1>
-        <nav>
-          <ul className="flex justify-end bg-slate-950">
-            <li>
-              <Link
-                className="block p-4 text-center text-slate-50 hover:bg-slate-700"
-                to="/"
-              >
-                Home
-              </Link>
-            </li>
+      <nav className='grid grid-cols-3 grid-rows-1'>
+        <p className="col-start-2 col-end-3 p-4 text-4xl text-center hover:scale-125 text-slate-950">
+        <Link to="/">Rate <br/> My <br/> OOTD</Link>
+          </p>
             {user ? (
               <>
-                <li>
-                  <Link
-                    className="block p-4 text-center text-slate-50 hover:bg-slate-700"
-                    to="/profile"
-                  >
+                <p className="col-start-1 col-end-2 row-start-1 p-4 text-center
+                 text-slate-50 hover:text-slate-950">
+                  <Link to="/profile">
                     Profile
                   </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block p-4 text-center text-slate-50 hover:bg-slate-700"
-                    to="/upload"
-                  >
+                </p>
+                <p className="col-start-3 col-end-4 row-start-1 p-4 text-center
+                 text-slate-50 hover:text-slate-950">
+                  <Link to="/upload">
                     Upload
                   </Link>
-                </li>
-                <li>
-                  <Link
-                    className="block p-4 text-center text-slate-50 hover:bg-slate-700"
-                    to="/logout"
-                  >
-                    Logout
-                  </Link>
-                </li>
+                </p>
               </>
             ) : (
-              <li>
+              <p>
                 <Link
-                  className="block p-4 text-center text-slate-50 hover:bg-slate-700"
+                  className="text-center text-slate-50 hover:text-slate-950"
                   to="/login"
                 >
                   Login
                 </Link>
-              </li>
+              </p>
             )}
-          </ul>
-        </nav>
-      </header>
-      <main className="p-4">
+      </nav>
+      <main className='p-10'>
         <Outlet />
       </main>
-      <footer className="flex justify-end bg-slate-950 p-4">
-        <p>Copyright 2024 - NN</p>
-      </footer>
     </>
   );
 };

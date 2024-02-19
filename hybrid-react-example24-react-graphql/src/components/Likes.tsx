@@ -101,7 +101,7 @@ const Likes = ({item}: {item: MediaItemWithOwner}) => {
     <>
       Like count: {likeState.count}
       <button
-        className="bg-slate-700 p-2 hover:bg-slate-950"
+        className=" hover:text-slate-950 text-center"
         onClick={handleLike}
       >
         {likeState.userLike ? 'Unlike' : 'Like'}
