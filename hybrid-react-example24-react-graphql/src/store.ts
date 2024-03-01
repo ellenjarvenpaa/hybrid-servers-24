@@ -1,14 +1,11 @@
 import {create} from 'zustand';
 import {Comment} from './types/DBTypes';
-
 type CommentWithUsername = Partial<Comment & {username: string}>;
-
 type CommentStore = {
   comments: CommentWithUsername[];
   setComments: (comments: CommentWithUsername[]) => void;
   addComment: (comment: CommentWithUsername) => void;
 };
-
 export const useCommentStore = create<CommentStore>((set) => ({
   comments: [],
   setComments: (comments) =>
@@ -20,7 +17,7 @@ export const useCommentStore = create<CommentStore>((set) => ({
       comments: [
         ...state.comments,
         {
-          comment_id: state.comments.length + 1, // This is a temporary solution
+          comment_id: (state.comments.length + 1).toString(), // Fix: Convert comment_id to string
           comment_text: comment.comment_text,
           user_id: comment.user_id,
           media_id: comment.media_id,
