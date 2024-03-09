@@ -1,6 +1,5 @@
 import {NavigateFunction, useLocation, useNavigate} from 'react-router-dom';
 import {MediaItemWithOwner} from '../types/DBTypes';
-import Likes from '../components/Likes';
 import Comments from '../components/Comments';
 
 const Single = () => {
@@ -11,23 +10,16 @@ const Single = () => {
 
   return (
     <>
-      <p className='p-3 text-slate-950 bg-slate-50 border rounded border-black'>
-        Uploaded at: {new Date(item.created_at).toLocaleString('fi-FI')}, by:{' '}
-        {item.username}{' '}
-      </p>
-    <div className='flex justify-center'>
+    <div className='flex flex-col justify-center p-2 w-96'>
       {item.media_type.includes('video') ? (
         <video controls src={item.filename}></video>
         ) : (
           <img src={item.filename} alt={item.title} />
           )}
+      <div className='p-3 text-slate-950 bg-slate-50 border rounded border-black grid'>
+        <h3 className='p-2'>{item.title}</h3>
+        <p className='p-2'>{item.description}</p>
       </div>
-      <div className='p-3 text-slate-950 bg-slate-50 border rounded border-black grid grid-cols-2'>
-      <h3 className='p-2'>{item.title}</h3>
-      <div className='p-2 text-end'>
-      <Likes item={item} />
-      </div>
-      <p className='p-2'>{item.description}</p>
       </div>
       <Comments item={item} />
       <button className='p-3 hover:text-slate-950'
@@ -35,7 +27,11 @@ const Single = () => {
           navigate(-1);
         }}
       >
-      Back
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+      stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+      </svg>
+
       </button>
     </>
   );

@@ -87,7 +87,7 @@ const Upload = () => {
         </div>
         <div className="flex justify-center">
           <button
-            className="p-3 text-slate-950 hover:text-slate-50"
+            className="p-3 text-slate-950 hover:text-slate-50 text-xl font-bold"
             type="submit"
             disabled={file && inputs.title.length > 3 ? false : true}
           >

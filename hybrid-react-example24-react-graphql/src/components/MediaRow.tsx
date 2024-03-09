@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom';
 import {MediaItemWithOwner} from '../types/DBTypes';
 import {useUpdateContext, useUserContext} from '../hooks/ContextHooks';
 import {useMedia} from '../hooks/graphQLHooks';
+import Likes from './Likes';
 
 const MediaRow = (props: {item: MediaItemWithOwner}) => {
   const {item} = props;
@@ -28,7 +29,8 @@ const MediaRow = (props: {item: MediaItemWithOwner}) => {
   };
 
   return (
-    <tr className='grid text-center'>
+    <tr className='grid text-center bg-stone-50 p-5 m-5 rounded'>
+        <td className="p-3 text-slate-950 text-left">{item.owner.username}</td>
       <td className="items-center justify-center">
         <img
           className="h-60 w-72 object-cover"
@@ -36,15 +38,19 @@ const MediaRow = (props: {item: MediaItemWithOwner}) => {
           alt={item.title}
         />
       </td>
-      <td className="p-3">{item.owner.username}</td>
       <td className="p-3">
-        <div className="">
+        <div className="text-slate-950 flex justify-between">
+          <Likes item={item} />
           <Link
-            className="p-2 text-center hover:text-slate-950"
+            className=""
             to="/single"
             state={item}
           >
-            View
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
           </Link>
           {user &&
             (user.user_id === item.user_id || user.level_name === 'Admin') && (
@@ -64,7 +70,7 @@ const MediaRow = (props: {item: MediaItemWithOwner}) => {
               </>
             )}
         </div>
-        <p className='p-3'>Comments: {item.comments_count}</p>
+        <p className='text-slate-950 text-left pt-2'>Comments: {item.comments_count}</p>
       </td>
     </tr>
   );

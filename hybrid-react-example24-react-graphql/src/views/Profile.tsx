@@ -17,7 +17,7 @@ const Profile = () => {
         </div>
           <button>
             <Link
-              className="block p-4 pl-0 text-center text-slate-50 hover:text-slate-950"
+              className="block p-4 pl-0 text-center text-slate-950 hover:text-slate-50 text-xl font-bold"
               to="/logout">
               Logout
             </Link></button>

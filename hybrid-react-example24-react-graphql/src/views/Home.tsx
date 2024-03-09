@@ -7,8 +7,8 @@ const Home = () => {
 
   return (
     <>
-      <table>
-        <tbody>
+      <table className='grid justify-center' >
+        <tbody className='' >
           {mediaArray.map((item) => (
             <MediaRow
               key={item.media_id}

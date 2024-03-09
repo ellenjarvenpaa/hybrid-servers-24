@@ -54,11 +54,31 @@ const Comments = ({item}: {item: MediaItemWithOwner}) => {
     <>
       {user && (
         <>
-          <h3 className="text-xl">Post Comment</h3>
+              {comments.length > 0 && (
+                <>
+                  <h3 className="text-xl p-2 text-slate-950">Comments...</h3>
+                  <ul>
+                    {comments.map((comment) => (
+                      <li key={comment.comment_id}>
+                        <div className="rounded-md border border-slate-950 bg-slate-50 p-3 text-slate-950">
+                          <span className=" text-slate-950">
+                            On{' '}
+                            {new Date(comment.created_at!).toLocaleDateString('fi-FI')}{' '}
+                          </span>
+                          <span className=" text-slate-950">
+                            {comment.username} wrote:
+                          </span>
+                          <span className="ml-2">{comment.comment_text}</span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
           <form onSubmit={handleSubmit} ref={formRef}>
             <div className="flex w-4/5">
-              <label className="w-1/3 p-6 text-end" htmlFor="comment">
-                Comment
+              <label className="w-1/3 p-6 text-end text-slate-950" htmlFor="comment">
+                Comment...
               </label>
               <input
                 className="m-3 w-2/3 rounded-md border border-slate-500 p-3 text-slate-950"
@@ -68,36 +88,15 @@ const Comments = ({item}: {item: MediaItemWithOwner}) => {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="flex w-4/5 justify-end">
+            <div className="flex justify-center text-slate-950 hover:text-slate-50 text-xl font-bold">
               <button
-                className="m-3 w-1/3 rounded-md bg-slate-700 p-3"
+                className=""
                 type="submit"
               >
                 Post
               </button>
             </div>
           </form>
-        </>
-      )}
-      {comments.length > 0 && (
-        <>
-          <h3 className="text-xl">Comments</h3>
-          <ul>
-            {comments.map((comment) => (
-              <li key={comment.comment_id}>
-                <div className="rounded-md border border-slate-200 bg-slate-800 p-3 text-slate-100">
-                  <span className="font-bold text-slate-200">
-                    On{' '}
-                    {new Date(comment.created_at!).toLocaleDateString('fi-FI')}{' '}
-                  </span>
-                  <span className="font-bold text-slate-200">
-                    {comment.username} wrote:
-                  </span>
-                  <span className="ml-2">{comment.comment_text}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
         </>
       )}
     </>
