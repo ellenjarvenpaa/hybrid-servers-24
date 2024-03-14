@@ -10,12 +10,14 @@ const Single = () => {
 
   return (
     <>
-    <div className='flex flex-col justify-center p-2 w-96'>
+    <div className='grid justify-center p-2'>
+      <div>
       {item.media_type.includes('video') ? (
         <video controls src={item.filename}></video>
         ) : (
           <img src={item.filename} alt={item.title} />
           )}
+      </div>
       <div className='p-3 text-slate-950 bg-slate-50 border rounded border-black grid'>
         <h3 className='p-2'>{item.title}</h3>
         <p className='p-2'>{item.description}</p>

@@ -74,6 +74,18 @@ const Upload = () => {
           />
         </div>
         <div className="flex justify-center">
+          <label className="text-slate-950 p-6" htmlFor="title">
+            Outfit title...
+          </label>
+          <input
+            className="m-3 w-2/4 rounded-md border border-slate-950 p-3 text-slate-950"
+            name="title"
+            type="text"
+            id="title"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="flex justify-center">
           <label className="text-slate-950 p-6" htmlFor="description">
             Outfit details...
           </label>
@@ -94,6 +106,16 @@ const Upload = () => {
             Upload
           </button>
         </div>
+        <button className='p-3 hover:text-slate-950'
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+      stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+      </svg>
+      </button>
       </form>
     </>
   );

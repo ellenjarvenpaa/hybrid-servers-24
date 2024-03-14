@@ -2,11 +2,13 @@ import {useState} from 'react';
 // import {useUser} from '../hooks/apiHooks';
 import {useUser} from '../hooks/graphQLHooks';
 import {useForm} from '../hooks/formHooks';
+import {NavigateFunction, useNavigate} from 'react-router-dom';
 
 const RegisterForm = () => {
   const {postUser} = useUser();
   const [usernameAvailable, setUsernameAvailable] = useState<boolean>(true);
   const [emailAvailable, setEmailAvailable] = useState<boolean>(true);
+  const navigate: NavigateFunction = useNavigate();
 
   const initValues = {username: '', password: '', email: ''};
 
@@ -41,7 +43,7 @@ const RegisterForm = () => {
   console.log(usernameAvailable, emailAvailable);
   return (
     <>
-      <h3 className="text-3xl">Register</h3>
+      <h3 className="text-3xl text-center font-bold p-3">Register</h3>
       <form onSubmit={handleSubmit} className="flex flex-col text-center">
         <div className="flex w-4/5">
           <label className="w-1/3 p-6 text-end" htmlFor="username">
@@ -94,14 +96,24 @@ const RegisterForm = () => {
             <p className="text-red-500">Email not available</p>
           </div>
         )}
-        <div className="flex w-4/5 justify-end">
+        <div className="flex justify-center">
           <button
-            className="m-3 w-1/3 rounded-md bg-slate-700 p-3"
+            className="m-3 text-slate-950 hover:bg-slate-50 font-bold p-3 border rounded border-black"
             type="submit"
           >
             Register
           </button>
         </div>
+      <button className='p-3 hover:text-slate-950'
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+      stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75 3 12m0 0 3.75-3.75M3 12h18" />
+      </svg>
+      </button>
       </form>
     </>
   );

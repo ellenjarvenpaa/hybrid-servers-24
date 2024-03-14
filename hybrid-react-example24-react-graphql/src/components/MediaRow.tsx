@@ -30,7 +30,7 @@ const MediaRow = (props: {item: MediaItemWithOwner}) => {
 
   return (
     <tr className='grid text-center bg-stone-50 p-5 m-5 rounded'>
-        <td className="p-3 text-slate-950 text-left">{item.owner.username}</td>
+        <td className="p-3 text-slate-950 text-left font-bold">{item.owner.username}</td>
       <td className="items-center justify-center">
         <img
           className="h-60 w-72 object-cover"
@@ -38,6 +38,7 @@ const MediaRow = (props: {item: MediaItemWithOwner}) => {
           alt={item.title}
         />
       </td>
+      <td className="text-slate-950 p-3 pb-0 text-left">{item.title}</td>
       <td className="p-3">
         <div className="text-slate-950 flex justify-between">
           <Likes item={item} />
